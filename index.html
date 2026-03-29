@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent Native 思考宝典 - 产品经理指南</title>
+    <title>Sophie 的学习资料库</title>
     <style>
         :root {
             --primary: #6366f1;
@@ -31,983 +31,280 @@
             background: var(--bg);
             color: var(--text);
             line-height: 1.8;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            min-height: 100vh;
         }
 
-        /* Cover */
-        .cover {
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Header */
+        .header {
             text-align: center;
-            padding: 80px 20px;
-            border-bottom: 1px solid var(--border);
             margin-bottom: 60px;
         }
 
-        .cover h1 {
-            font-size: 3rem;
+        .header h1 {
+            font-size: 2.5rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
-        .cover .subtitle {
-            font-size: 1.25rem;
+        .header .subtitle {
             color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            padding: 30px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Category */
+        .category {
             margin-bottom: 40px;
         }
 
-        .cover .meta {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-        }
-
-        /* TOC */
-        .toc {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 60px;
-        }
-
-        .toc h2 {
-            font-size: 1.25rem;
-            margin-bottom: 20px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .toc-list {
-            list-style: none;
-        }
-
-        .toc-list li {
-            margin-bottom: 12px;
-        }
-
-        .toc-list a {
-            color: var(--text);
-            text-decoration: none;
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 16px;
-            border-radius: 8px;
-            transition: background 0.2s;
-        }
-
-        .toc-list a:hover {
-            background: var(--bg-card-hover);
-        }
-
-        .toc-list .chapter-num {
-            color: var(--primary);
-            font-weight: 600;
-            margin-right: 12px;
-        }
-
-        /* Sections */
-        section {
-            margin-bottom: 80px;
-        }
-
-        h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--primary);
+        .category-header {
             display: flex;
             align-items: center;
             gap: 12px;
+            margin-bottom: 20px;
         }
 
-        h2 .icon {
-            width: 40px;
-            height: 40px;
-            background: var(--primary);
+        .category-icon {
+            width: 36px;
+            height: 36px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .category-icon.ai { background: rgba(99, 102, 241, 0.2); }
+        .category-icon.product { background: rgba(245, 158, 11, 0.2); }
+        .category-icon.tech { background: rgba(6, 182, 212, 0.2); }
+
+        .category-title {
             font-size: 1.25rem;
-        }
-
-        h3 {
-            font-size: 1.5rem;
             font-weight: 600;
-            margin: 40px 0 20px;
-            color: var(--accent-cyan);
-        }
-
-        h4 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin: 30px 0 15px;
-            color: var(--accent-amber);
-        }
-
-        p {
-            margin-bottom: 20px;
-            color: var(--text);
         }
 
         /* Cards */
+        .card-grid {
+            display: grid;
+            gap: 20px;
+        }
+
         .card {
             background: var(--bg-card);
             border-radius: 16px;
-            padding: 30px;
-            margin: 30px 0;
+            padding: 28px;
             border: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+            display: block;
+        }
+
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--primary);
+            transform: translateY(-2px);
         }
 
         .card-header {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 15px;
             display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* Format Hierarchy Table */
-        .format-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            font-size: 0.95rem;
-        }
-
-        .format-table th, .format-table td {
-            padding: 16px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .format-table th {
-            background: var(--bg-card);
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-        }
-
-        .format-table tr:hover {
-            background: var(--bg-card);
-        }
-
-        .format-table .rank {
-            font-weight: 700;
-            font-size: 1.25rem;
-            width: 60px;
-        }
-
-        .format-table .rank-1 { color: var(--accent-green); }
-        .format-table .rank-2 { color: var(--accent-cyan); }
-        .format-table .rank-3 { color: var(--accent-amber); }
-        .format-table .rank-4 { color: var(--accent-rose); }
-
-        /* Code Block */
-        pre {
-            background: #0d1117;
-            border-radius: 12px;
-            padding: 20px;
-            overflow-x: auto;
-            margin: 20px 0;
-            border: 1px solid var(--border);
-        }
-
-        code {
-            font-family: 'JetBrains Mono', 'Fira Code', monospace;
-            font-size: 0.9rem;
-            color: #e6edf3;
-        }
-
-        .code-comment {
-            color: #8b949e;
-        }
-
-        .code-key {
-            color: #79c0ff;
-        }
-
-        .code-string {
-            color: #a5d6ff;
-        }
-
-        .code-number {
-            color: #f2cc60;
-        }
-
-        /* Quote */
-        blockquote {
-            border-left: 4px solid var(--primary);
-            padding: 20px 24px;
-            margin: 30px 0;
-            background: var(--bg-card);
-            border-radius: 0 12px 12px 0;
-            font-style: italic;
-        }
-
-        blockquote .author {
-            font-style: normal;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-top: 12px;
-            font-size: 0.9rem;
-        }
-
-        /* Lists */
-        ul, ol {
-            margin: 20px 0;
-            padding-left: 24px;
-        }
-
-        li {
+            justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 12px;
         }
 
-        /* Badge */
-        .badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .card-badge {
             font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
-        .badge-green { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
-        .badge-amber { background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); }
-        .badge-cyan { background: rgba(6, 182, 212, 0.2); color: var(--accent-cyan); }
-        .badge-rose { background: rgba(244, 63, 94, 0.2); color: var(--accent-rose); }
+        .badge-new { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .badge-hot { background: rgba(244, 63, 94, 0.2); color: var(--accent-rose); }
 
-        /* Feature Grid */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .feature-item {
-            background: var(--bg-card);
-            border-radius: 12px;
-            padding: 24px;
-            border: 1px solid var(--border);
-        }
-
-        .feature-item h4 {
-            margin: 0 0 12px;
-            color: var(--text);
-        }
-
-        .feature-item p {
-            margin: 0;
+        .card-desc {
+            color: var(--text-muted);
             font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.85rem;
             color: var(--text-muted);
         }
 
-        /* Comparison */
-        .comparison {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        @media (max-width: 600px) {
-            .comparison {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .comparison-card {
-            padding: 24px;
-            border-radius: 12px;
-        }
-
-        .comparison-card.pro {
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-
-        .comparison-card.con {
-            background: rgba(244, 63, 94, 0.1);
-            border: 1px solid rgba(244, 63, 94, 0.3);
-        }
-
-        .comparison-card h4 {
-            margin: 0 0 15px;
-        }
-
-        .comparison-card.pro h4 { color: var(--accent-green); }
-        .comparison-card.con h4 { color: var(--accent-rose); }
-
-        /* Source Link */
-        .source-link {
-            display: inline-flex;
+        .card-meta span {
+            display: flex;
             align-items: center;
-            gap: 8px;
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            padding: 8px 16px;
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 8px;
-            margin: 5px;
-            transition: background 0.2s;
+            gap: 6px;
         }
 
-        .source-link:hover {
-            background: rgba(99, 102, 241, 0.2);
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            border-radius: 6px;
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px 20px;
+            margin-top: 60px;
             border-top: 1px solid var(--border);
             color: var(--text-muted);
             font-size: 0.9rem;
         }
 
-        /* Highlight Box */
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.1));
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 12px;
-            padding: 24px;
-            margin: 30px 0;
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
         }
 
-        .highlight-box .title {
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 12px;
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
         }
     </style>
 </head>
 <body>
-    <!-- Cover -->
-    <header class="cover">
-        <h1>Agent Native</h1>
-        <p class="subtitle">思考宝典 · 产品经理指南</p>
-        <p class="meta">2026年3月 · 基于行业前沿研究整理</p>
-    </header>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Sophie 的学习资料库</h1>
+            <p class="subtitle">公开学习资料整理，分享给所有对 AI、产品、技术感兴趣的朋友</p>
+        </header>
 
-    <!-- Table of Contents -->
-    <nav class="toc">
-        <h2>目录</h2>
-        <ol class="toc-list">
-            <li><a href="#intro"><span><span class="chapter-num">01</span>什么是 Agent Native</span></a></li>
-            <li><a href="#json"><span><span class="chapter-num">02</span>JSON：机器优先的结构化语言</span></a></li>
-            <li><a href="#markdown"><span><span class="chapter-num">03</span>Markdown：LLM 的原生输出</span></a></li>
-            <li><a href="#comparison"><span><span class="chapter-num">04</span>格式对比与选择指南</span></a></li>
-            <li><a href="#trends"><span><span class="chapter-num">05</span>行业趋势与专家观点</span></a></li>
-            <li><a href="#practice"><span><span class="chapter-num">06</span>产品经理实践指南</span></a></li>
-            <li><a href="#resources"><span><span class="chapter-num">07</span>延伸阅读</span></a></li>
-        </ol>
-    </nav>
-
-    <!-- Chapter 1: Introduction -->
-    <section id="intro">
-        <h2><span class="icon">01</span>什么是 Agent Native</h2>
-
-        <div class="highlight-box">
-            <p class="title">核心定义</p>
-            <p><strong>Agent Native</strong> 指的是为 AI Agent（智能体）原生设计的数据格式、工具接口和工作流程。就像 "Cloud Native" 是为云环境设计的应用，Agent Native 是让 AI Agent 能够最高效理解、处理和生成的产品设计范式。</p>
-        </div>
-
-        <h3>为什么格式选择如此重要</h3>
-
-        <p>在传统软件开发中，我们为人类用户设计界面和文档。PDF、Word、PPT 这些格式优化的是<strong>人类阅读体验</strong>——固定排版、丰富视觉、打印友好。</p>
-
-        <p>但 AI Agent 的工作方式完全不同：</p>
-
-        <div class="feature-grid">
-            <div class="feature-item">
-                <h4>Agent 不需要视觉排版</h4>
-                <p>Agent 通过 API 和结构化数据交互，固定的页面布局反而增加解析成本</p>
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-num">1</div>
+                <div class="stat-label">学习资料</div>
             </div>
-            <div class="feature-item">
-                <h4>Agent 需要程序化处理</h4>
-                <p>能够被代码解析、验证、转换，而不是依赖 OCR 和模糊匹配</p>
+            <div class="stat-item">
+                <div class="stat-num">3</div>
+                <div class="stat-label">主题分类</div>
             </div>
-            <div class="feature-item">
-                <h4>Agent 需要确定性输出</h4>
-                <p>Schema 验证确保输出格式稳定，下游系统可以可靠处理</p>
-            </div>
-            <div class="feature-item">
-                <h4>Agent 需要链式调用</h4>
-                <p>一个 Agent 的输出成为另一个 Agent 的输入，需要标准化格式</p>
+            <div class="stat-item">
+                <div class="stat-num">2026</div>
+                <div class="stat-label">创建年份</div>
             </div>
         </div>
 
-        <h3>格式层级：从机器友好到人类友好</h3>
-
-        <table class="format-table">
-            <thead>
-                <tr>
-                    <th>排名</th>
-                    <th>格式</th>
-                    <th>Agent 友好度</th>
-                    <th>核心优势</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="rank rank-1">1</td>
-                    <td><strong>JSON / 结构化数据</strong></td>
-                    <td><span class="badge badge-green">最佳</span></td>
-                    <td>Schema 验证、Function Calling 原生支持、下游自动化</td>
-                </tr>
-                <tr>
-                    <td class="rank rank-2">2</td>
-                    <td><strong>Markdown</strong></td>
-                    <td><span class="badge badge-cyan">优秀</span></td>
-                    <td>LLM 原生输出、版本控制友好、轻量解析</td>
-                </tr>
-                <tr>
-                    <td class="rank rank-3">3</td>
-                    <td><strong>HTML</strong></td>
-                    <td><span class="badge badge-amber">中等</span></td>
-                    <td>语义结构清晰、支持交互，但噪音较多</td>
-                </tr>
-                <tr>
-                    <td class="rank rank-4">4</td>
-                    <td><strong>PDF / Word</strong></td>
-                    <td><span class="badge badge-rose">较差</span></td>
-                    <td>固定排版为人类设计，机器解析困难</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <blockquote>
-            "The future of software is agents talking to agents. And agents speak JSON."
-            <p class="author">— 行业共识</p>
-        </blockquote>
-    </section>
-
-    <!-- Chapter 2: JSON -->
-    <section id="json">
-        <h2><span class="icon">02</span>JSON：机器优先的结构化语言</h2>
-
-        <h3>为什么 JSON 是 Agent 的首选</h3>
-
-        <p>JSON (JavaScript Object Notation) 已成为 Agent Native 系统的基础数据交换格式。它的优势在于：</p>
-
-        <div class="comparison">
-            <div class="comparison-card pro">
-                <h4>✓ 优势</h4>
-                <ul>
-                    <li><strong>Schema 验证</strong>：可以定义严格的 JSON Schema，确保数据结构正确</li>
-                    <li><strong>Function Calling 原生支持</strong>：OpenAI、Anthropic 的工具调用都基于 JSON</li>
-                    <li><strong>类型安全</strong>：支持字符串、数字、布尔值、数组、对象等类型</li>
-                    <li><strong>广泛工具链</strong>：所有编程语言都有成熟的 JSON 库</li>
-                    <li><strong>嵌套结构</strong>：可以表达复杂的层级关系</li>
-                </ul>
+        <!-- AI & Agent -->
+        <section class="category">
+            <div class="category-header">
+                <div class="category-icon ai">🤖</div>
+                <h2 class="category-title">AI & Agent</h2>
             </div>
-            <div class="comparison-card con">
-                <h4>✗ 局限</h4>
-                <ul>
-                    <li><strong>人类可读性差</strong>：复杂嵌套时难以阅读</li>
-                    <li><strong>无注释支持</strong>：标准 JSON 不支持注释</li>
-                    <li><strong>文件体积</strong>：相比二进制格式较大</li>
-                    <li><strong>长文本不友好</strong>：大量文本内容不适合用 JSON 存储</li>
-                </ul>
+            <div class="card-grid">
+                <a href="agent-native.html" class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Agent Native 思考宝典</h3>
+                        <span class="card-badge badge-new">New</span>
+                    </div>
+                    <p class="card-desc">AI Agent 时代的产品格式选择指南，涵盖 JSON、Markdown、Function Calling、MCP 协议等核心概念，以及产品经理实践指南。</p>
+                    <div class="card-meta">
+                        <span>📅 2026-03</span>
+                        <span>📖 7 章节</span>
+                        <span>⏱️ 约 25 分钟</span>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">JSON</span>
+                        <span class="tag">Markdown</span>
+                        <span class="tag">Agent Native</span>
+                        <span class="tag">MCP</span>
+                        <span class="tag">Function Calling</span>
+                    </div>
+                </a>
             </div>
-        </div>
+        </section>
 
-        <h3>JSON Schema：Agent 输出的契约</h3>
-
-        <p>JSON Schema 是 Agent Native 系统的核心组件，它定义了 Agent 输出必须遵循的结构：</p>
-
-<pre><code><span class="code-comment">// OpenAI Structured Outputs 示例</span>
-{
-  <span class="code-key">"name"</span>: <span class="code-string">"extract_user_info"</span>,
-  <span class="code-key">"parameters"</span>: {
-    <span class="code-key">"type"</span>: <span class="code-string">"object"</span>,
-    <span class="code-key">"properties"</span>: {
-      <span class="code-key">"name"</span>: { <span class="code-key">"type"</span>: <span class="code-string">"string"</span> },
-      <span class="code-key">"age"</span>: { <span class="code-key">"type"</span>: <span class="code-string">"integer"</span>, <span class="code-key">"minimum"</span>: <span class="code-number">0</span> },
-      <span class="code-key">"email"</span>: { <span class="code-key">"type"</span>: <span class="code-string">"string"</span>, <span class="code-key">"format"</span>: <span class="code-string">"email"</span> },
-      <span class="code-key">"interests"</span>: {
-        <span class="code-key">"type"</span>: <span class="code-string">"array"</span>,
-        <span class="code-key">"items"</span>: { <span class="code-key">"type"</span>: <span class="code-string">"string"</span> }
-      }
-    },
-    <span class="code-key">"required"</span>: [<span class="code-string">"name"</span>, <span class="code-string">"email"</span>]
-  }
-}</code></pre>
-
-        <h3>Function Calling：Agent 与工具的桥梁</h3>
-
-        <p>OpenAI 的 Function Calling 和 Anthropic 的 Tool Use 都基于 JSON Schema，让 Agent 能够：</p>
-
-        <ol>
-            <li><strong>声明能力</strong>：定义 Agent 可以调用的函数及其参数</li>
-            <li><strong>验证输入</strong>：确保调用参数符合预期格式</li>
-            <li><strong>结构化输出</strong>：函数返回值也是结构化 JSON</li>
-            <li><strong>链式调用</strong>：一个函数的输出可以直接作为另一个函数的输入</li>
-        </ol>
-
-        <div class="card">
-            <div class="card-header">🛠️ 产品设计启示</div>
-            <p>当你的产品需要与 AI Agent 集成时，优先提供 <strong>JSON API</strong> 而非人类友好的 HTML 页面。Agent 不需要漂亮的 UI，它需要的是稳定、可预测的数据结构。</p>
-        </div>
-
-        <h3>MCP (Model Context Protocol)：Agent 通信的新标准</h3>
-
-        <p>Anthropic 主导的 MCP 协议正在成为 Agent 与外部工具交互的标准。它基于 JSON-RPC，定义了：</p>
-
-        <ul>
-            <li><strong>Resources</strong>：Agent 可以读取的数据源</li>
-            <li><strong>Tools</strong>：Agent 可以调用的功能</li>
-            <li><strong>Prompts</strong>：预定义的提示模板</li>
-        </ul>
-
-        <p>MCP 的意义在于：任何实现了 MCP 的工具都可以被任何支持 MCP 的 Agent 使用，打破了厂商锁定。</p>
-    </section>
-
-    <!-- Chapter 3: Markdown -->
-    <section id="markdown">
-        <h2><span class="icon">03</span>Markdown：LLM 的原生输出</h2>
-
-        <h3>为什么 Markdown 是 Agent 的第二语言</h3>
-
-        <p>Markdown 的设计哲学是 "易读易写"，这恰好与 LLM 的输出特性完美匹配：</p>
-
-        <div class="feature-grid">
-            <div class="feature-item">
-                <h4>LLM 原生输出格式</h4>
-                <p>所有主流 LLM（GPT、Claude、Gemini）都默认输出 Markdown，无需额外转换</p>
+        <!-- Product -->
+        <section class="category">
+            <div class="category-header">
+                <div class="category-icon product">💡</div>
+                <h2 class="category-title">产品设计</h2>
             </div>
-            <div class="feature-item">
-                <h4>轻量级解析</h4>
-                <p>解析器简单，几乎所有语言都有实现，处理速度快</p>
+            <div class="empty-state">
+                <p>敬请期待...</p>
             </div>
-            <div class="feature-item">
-                <h4>版本控制友好</h4>
-                <p>纯文本格式，Git diff 清晰可读，适合 AI 生成内容的迭代</p>
+        </section>
+
+        <!-- Tech -->
+        <section class="category">
+            <div class="category-header">
+                <div class="category-icon tech">⚙️</div>
+                <h2 class="category-title">技术实践</h2>
             </div>
-            <div class="feature-item">
-                <h4>人类与机器兼顾</h4>
-                <p>既是 Agent 可靠解析的结构化文本，也保持良好的可读性</p>
+            <div class="empty-state">
+                <p>敬请期待...</p>
             </div>
-        </div>
+        </section>
 
-        <h3>CLAUDE.md：Anthropic 的最佳实践</h3>
-
-        <p>Anthropic 在 Claude Code 产品中引入了 <code>CLAUDE.md</code> 文件格式，这是 Agent Native 文档设计的典范：</p>
-
-<pre><code><span class="code-comment"># Project Name</span>
-
-<span class="code-comment">> Project description in one line</span>
-
-<span class="code-comment">## Build Commands</span>
-
-- Build: `npm run build`
-- Test: `npm test`
-- Lint: `npm run lint`
-
-<span class="code-comment">## Code Style</span>
-
-- Use TypeScript strict mode
-- Prefer functional components
-- Follow existing patterns in the codebase
-
-<span class="code-comment">## Architecture</span>
-
-<span class="code-comment">Brief description of key components...</span></code></pre>
-
-        <div class="highlight-box">
-            <p class="title">CLAUDE.md 设计原则</p>
-            <ul>
-                <li><strong>简洁优先</strong>：避免冗余，Claude 能从代码中推断的不需要写</li>
-                <li><strong>结构清晰</strong>：使用标题和列表组织信息</li>
-                <li><strong>命令可执行</strong>：提供具体的构建、测试命令</li>
-                <li><strong>约定优于配置</strong>：遵循项目已有模式</li>
-            </ul>
-        </div>
-
-        <h3>Markdown 在 Agent 工作流中的角色</h3>
-
-        <table class="format-table">
-            <thead>
-                <tr>
-                    <th>场景</th>
-                    <th>Markdown 的优势</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>文档生成</strong></td>
-                    <td>LLM 直接输出格式化文档，无需后处理</td>
-                </tr>
-                <tr>
-                    <td><strong>代码注释</strong></td>
-                    <td>README、API 文档天然支持 Markdown</td>
-                </tr>
-                <tr>
-                    <td><strong>知识库</strong></td>
-                    <td>Obsidian、Notion 等工具原生支持，易于 Agent 读写</td>
-                </tr>
-                <tr>
-                    <td><strong>报告输出</strong></td>
-                    <td>结构化标题 + 列表 + 代码块，适合生成分析报告</td>
-                </tr>
-                <tr>
-                    <td><strong>PR 描述</strong></td>
-                    <td>GitHub PR 模板使用 Markdown，Agent 可自动生成</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <blockquote>
-            "Markdown is the lingua franca of AI output. It's structured enough for machines to parse, readable enough for humans to understand."
-            <p class="author">— AI Engineering 社区</p>
-        </blockquote>
-    </section>
-
-    <!-- Chapter 4: Comparison -->
-    <section id="comparison">
-        <h2><span class="icon">04</span>格式对比与选择指南</h2>
-
-        <h3>场景决策矩阵</h3>
-
-        <table class="format-table">
-            <thead>
-                <tr>
-                    <th>使用场景</th>
-                    <th>推荐格式</th>
-                    <th>原因</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Agent 工具调用 / API 返回</td>
-                    <td><span class="badge badge-green">JSON</span></td>
-                    <td>Schema 验证、类型安全、下游自动化</td>
-                </tr>
-                <tr>
-                    <td>LLM 输出文档 / 报告</td>
-                    <td><span class="badge badge-cyan">Markdown</span></td>
-                    <td>原生输出、可读性好、易存储</td>
-                </tr>
-                <tr>
-                    <td>Agent 间数据交换</td>
-                    <td><span class="badge badge-green">JSON</span></td>
-                    <td>标准化、工具链完善</td>
-                </tr>
-                <tr>
-                    <td>知识库 / 文档存储</td>
-                    <td><span class="badge badge-cyan">Markdown</span></td>
-                    <td>版本控制、检索友好</td>
-                </tr>
-                <tr>
-                    <td>Web 内容展示</td>
-                    <td><span class="badge badge-amber">HTML</span></td>
-                    <td>语义化、交互能力</td>
-                </tr>
-                <tr>
-                    <td>最终交付给人类阅读</td>
-                    <td><span class="badge badge-rose">PDF</span></td>
-                    <td>排版固定、打印友好</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3>格式的组合使用</h3>
-
-        <p>在实际系统中，多种格式往往组合使用：</p>
-
-        <div class="card">
-            <div class="card-header">📦 典型工作流示例</div>
-            <ol>
-                <li><strong>Agent 处理</strong>：读取 JSON 配置 → 执行任务 → 输出 JSON 结果</li>
-                <li><strong>结果转换</strong>：JSON → Markdown 报告（供人类审阅）</li>
-                <li><strong>最终交付</strong>：Markdown → HTML/PDF（供终端用户阅读）</li>
-            </ol>
-            <p style="margin-top: 15px; color: var(--text-muted);">关键洞察：格式转换应该是<strong>单向的</strong>——从机器友好流向人类友好，而不是反过来。</p>
-        </div>
-
-        <h3>避免的陷阱</h3>
-
-        <div class="comparison">
-            <div class="comparison-card con">
-                <h4>✗ 常见错误</h4>
-                <ul>
-                    <li>让 Agent 输出 PDF/Word（格式控制困难）</li>
-                    <li>用 JSON 存储长篇内容（可读性差）</li>
-                    <li>用 Markdown 做结构化数据交换（缺乏验证）</li>
-                    <li>将 PDF 解析为 Agent 输入（OCR 不可靠）</li>
-                </ul>
-            </div>
-            <div class="comparison-card pro">
-                <h4>✓ 最佳实践</h4>
-                <ul>
-                    <li>Agent 间通信：始终用 JSON</li>
-                    <li>人类审阅：用 Markdown 中间层</li>
-                    <li>最终交付：按需转换为 PDF/HTML</li>
-                    <li>知识存储：Markdown + Git 版本控制</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chapter 5: Trends -->
-    <section id="trends">
-        <h2><span class="icon">05</span>行业趋势与专家观点</h2>
-
-        <h3>Anthropic：Tool Use 与 Agent 设计</h3>
-
-        <blockquote>
-            "When building with Claude, think in terms of structured outputs. Use tool definitions with clear JSON schemas. This makes your agents more reliable and easier to debug."
-            <p class="author">— Anthropic Engineering Blog</p>
-        </blockquote>
-
-        <p>Anthropic 的核心观点：</p>
-        <ul>
-            <li><strong>结构化优先</strong>：设计 Agent 系统时，先定义 JSON Schema</li>
-            <li><strong>CLAUDE.md 模式</strong>：用 Markdown 文件作为 Agent 的上下文配置</li>
-            <li><strong>MCP 协议</strong>：推动 Agent 与工具的标准化通信</li>
-        </ul>
-
-        <h3>a16z：Agent Native 产品形态</h3>
-
-        <blockquote>
-            "The most successful AI-native products won't just add AI to existing workflows—they'll reimagine the entire product around what AI agents can do best."
-            <p class="author">— a16z: What Is an AI Agent?</p>
-        </blockquote>
-
-        <p>a16z 的核心洞察：</p>
-        <ul>
-            <li><strong>重新设计产品</strong>：不是给现有产品加 AI，而是围绕 Agent 能力重新设计</li>
-            <li><strong>数据格式即基础设施</strong>：Agent Native 需要新的数据格式基础设施</li>
-            <li><strong>从 Chatbot 到 Agent</strong>：从对话式交互进化到自主执行任务</li>
-        </ul>
-
-        <h3>swyx：AI Engineering 的兴起</h3>
-
-        <blockquote>
-            "AI Engineering is not just about prompting—it's about building systems where LLMs are components. Data formats and structured outputs are the glue that holds these systems together."
-            <p class="author">— swyx, AI Engineering 概念提出者</p>
-        </blockquote>
-
-        <p>swyx 强调的趋势：</p>
-        <ul>
-            <li><strong>LLM 作为组件</strong>：不是魔法，而是需要可靠集成的基础设施</li>
-            <li><strong>结构化输出是关键</strong>：让 LLM 输出可被下游系统处理</li>
-            <li><strong>从 Demo 到 Production</strong>：可靠性比炫酷更重要</li>
-        </ul>
-
-        <h3>Google：结构化数据与 Agent</h3>
-
-        <p>Google 在 Agent 领域的布局：</p>
-        <ul>
-            <li><strong>Gemini Function Calling</strong>：基于 JSON Schema 的工具调用</li>
-            <li><strong>Vertex AI Agent Builder</strong>：企业级 Agent 开发平台</li>
-            <li><strong>结构化输出 API</strong>：强制 LLM 输出符合 Schema</li>
-        </ul>
-
-        <h3>开源社区：数据基础设施演进</h3>
-
-        <div class="feature-grid">
-            <div class="feature-item">
-                <h4>Apache Iceberg</h4>
-                <p>为数据湖提供表结构，让 Agent 可以可靠地查询和修改大规模数据</p>
-            </div>
-            <div class="feature-item">
-                <h4>Delta Sharing</h4>
-                <p>开放协议，让不同系统的 Agent 可以安全共享结构化数据</p>
-            </div>
-            <div class="feature-item">
-                <h4>LangChain / LlamaIndex</h4>
-                <p>Agent 框架，内部大量使用 JSON 进行状态管理和工具调用</p>
-            </div>
-            <div class="feature-item">
-                <h4>MinIO</h4>
-                <p>对象存储，配合 Agent 处理非结构化数据向结构化数据转换</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chapter 6: Practice Guide -->
-    <section id="practice">
-        <h2><span class="icon">06</span>产品经理实践指南</h2>
-
-        <h3>产品设计检查清单</h3>
-
-        <div class="card">
-            <h4>当设计 Agent 集成功能时，问自己：</h4>
-            <ul>
-                <li>✅ 我的 API 返回的是 JSON 还是 HTML？</li>
-                <li>✅ 我是否提供了清晰的 JSON Schema 文档？</li>
-                <li>✅ Agent 调用的错误信息是否结构化？</li>
-                <li>✅ 长文本内容是否用 Markdown 而非 JSON 存储？</li>
-                <li>✅ 我是否考虑了 Agent 间的数据流转？</li>
-                <li>✅ 最终交付给人类的格式是什么？需要转换吗？</li>
-            </ul>
-        </div>
-
-        <h3>技术决策框架</h3>
-
-        <table class="format-table">
-            <thead>
-                <tr>
-                    <th>决策点</th>
-                    <th>选择依据</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>API 响应格式</td>
-                    <td>JSON（始终），考虑 GraphQL 增加灵活性</td>
-                </tr>
-                <tr>
-                    <td>Agent 配置文件</td>
-                    <td>Markdown（CLAUDE.md 模式）或 YAML</td>
-                </tr>
-                <tr>
-                    <td>日志与追踪</td>
-                    <td>JSON Lines（便于日志分析工具处理）</td>
-                </tr>
-                <tr>
-                    <td>知识库存储</td>
-                    <td>Markdown + Git，或向量数据库 + 元数据 JSON</td>
-                </tr>
-                <tr>
-                    <td>报告生成</td>
-                    <td>Markdown 中间格式 → 按需转 HTML/PDF</td>
-                </tr>
-                <tr>
-                    <td>跨系统数据交换</td>
-                    <td>JSON + JSON Schema 验证</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3>与开发团队沟通的语言</h3>
-
-        <div class="highlight-box">
-            <p class="title">产品经理应该能说清楚：</p>
-            <ol>
-                <li><strong>数据流向</strong>：从哪个 Agent 输出，到哪个 Agent 输入</li>
-                <li><strong>格式约束</strong>：每个环节使用什么格式，为什么</li>
-                <li><strong>验证规则</strong>：数据的哪些字段是必须的，类型是什么</li>
-                <li><strong>错误处理</strong>：格式不符时 Agent 应该如何响应</li>
-                <li><strong>人类介入点</strong>：在哪个环节需要人类审阅/确认</li>
-            </ol>
-        </div>
-
-        <h3>避免的 Product Anti-patterns</h3>
-
-        <div class="comparison">
-            <div class="comparison-card con">
-                <h4>✗ Anti-patterns</h4>
-                <ul>
-                    <li>"让 AI 直接输出 PDF"</li>
-                    <li>"用自然语言描述 API 参数"</li>
-                    <li>"Agent 输出格式看情况"</li>
-                    <li>"用户要什么格式就输出什么"</li>
-                </ul>
-            </div>
-            <div class="comparison-card pro">
-                <h4>✓ 正确做法</h4>
-                <ul>
-                    <li>JSON → Markdown → PDF 分层转换</li>
-                    <li>JSON Schema 定义清晰参数</li>
-                    <li>输出格式作为产品契约的一部分</li>
-                    <li>内部格式标准化，外部按需适配</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chapter 7: Resources -->
-    <section id="resources">
-        <h2><span class="icon">07</span>延伸阅读</h2>
-
-        <h3>官方文档与博客</h3>
-        <div class="card">
-            <a href="https://www.anthropic.com/engineering/claude-code-best-practices" class="source-link" target="_blank">Anthropic: Claude Code Best Practices</a>
-            <a href="https://docs.anthropic.com/en/docs/build-with-claude/tool-use" class="source-link" target="_blank">Anthropic: Tool Use 文档</a>
-            <a href="https://modelcontextprotocol.io/" class="source-link" target="_blank">MCP 协议官方文档</a>
-            <a href="https://platform.openai.com/docs/guides/structured-outputs" class="source-link" target="_blank">OpenAI: Structured Outputs</a>
-            <a href="https://a16z.com/ai/" class="source-link" target="_blank">a16z AI 内容</a>
-        </div>
-
-        <h3>行业分析</h3>
-        <div class="card">
-            <a href="https://www.anthropic.com/research" class="source-link" target="_blank">Anthropic Research</a>
-            <a href="https://blog.google/technology/ai/" class="source-link" target="_blank">Google AI Blog</a>
-            <a href="https://swyx.io/" class="source-link" target="_blank">swyx.io - AI Engineering</a>
-        </div>
-
-        <h3>技术标准</h3>
-        <div class="card">
-            <a href="https://json-schema.org/" class="source-link" target="_blank">JSON Schema 官方规范</a>
-            <a href="https://www.jsonrpc.org/" class="source-link" target="_blank">JSON-RPC 规范</a>
-            <a href="https://commonmark.org/" class="source-link" target="_blank">CommonMark (Markdown 标准)</a>
-        </div>
-
-        <h3>开源项目</h3>
-        <div class="card">
-            <a href="https://github.com/langchain-ai/langchain" class="source-link" target="_blank">LangChain</a>
-            <a href="https://github.com/run-llama/llama_index" class="source-link" target="_blank">LlamaIndex</a>
-            <a href="https://github.com/apache/iceberg" class="source-link" target="_blank">Apache Iceberg</a>
-        </div>
-
-        <h3>核心概念速查</h3>
-        <div class="card">
-            <table class="format-table">
-                <thead>
-                    <tr>
-                        <th>术语</th>
-                        <th>定义</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Agent Native</strong></td>
-                        <td>为 AI Agent 原生设计的数据格式和工作流程</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Function Calling</strong></td>
-                        <td>LLM 调用外部函数的机制，基于 JSON Schema</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Structured Output</strong></td>
-                        <td>强制 LLM 输出符合预定义 JSON Schema</td>
-                    </tr>
-                    <tr>
-                        <td><strong>MCP</strong></td>
-                        <td>Model Context Protocol，Agent 与工具的通信协议</td>
-                    </tr>
-                    <tr>
-                        <td><strong>JSON Schema</strong></td>
-                        <td>定义 JSON 数据结构的规范</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Tool Use</strong></td>
-                        <td>Anthropic 对 Function Calling 的术语</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>Agent Native 思考宝典 · 2026</p>
-        <p>基于 Anthropic、OpenAI、Google、a16z、swyx 等行业前沿研究整理</p>
-        <p style="margin-top: 20px; font-size: 0.8rem;">格式即基础设施。让 Agent 说 JSON，让人读 Markdown。</p>
-    </footer>
+        <!-- Footer -->
+        <footer class="footer">
+            <p>持续更新中 · <a href="https://github.com/sophieguanongit/learning-materials">GitHub</a></p>
+        </footer>
+    </div>
 </body>
 </html>
