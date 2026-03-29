@@ -13,6 +13,7 @@
 | 资料 | 描述 | 更新时间 |
 |------|------|----------|
 | [Agent Native 思考宝典](https://sophieguanongit.github.io/learning-materials/agent-native.html) | AI Agent 时代的产品格式选择指南 | 2026-03 |
+| [JSON Schema 实战指南](https://sophieguanongit.github.io/learning-materials/json-schema.html) | Agent 时代的结构化输出 | 2026-03 |
 
 ### 产品设计 💡
 
