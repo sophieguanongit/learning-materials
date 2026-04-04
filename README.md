@@ -21,7 +21,9 @@
 
 ### 技术实践 ⚙️
 
-> 敬请期待...
+| 资料 | 描述 | 更新时间 |
+|------|------|----------|
+| [Docker 实战指南](https://sophieguanongit.github.io/learning-materials/docker.html) | 产品经理的容器化入门 | 2026-04 |
 
 ---
 
